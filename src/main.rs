@@ -22,6 +22,18 @@ Wyjście:
 
 fn main() {
     let stdin = std::io::stdin();
-    
-    println!("Hello, world!");
+    let mut buffer = String::new();
+    stdin.read_line(&mut buffer).expect("err");
+
+    let t:u8 = buffer.trim().parse().unwrap();
+    for _ in 0..t {
+        buffer.clear();
+        stdin.read_line(&mut buffer).expect("err");
+
+        let list: Vec<&str> = buffer.split(' ').map(|x| x.trim()).collect();
+        let reversed_list: Vec<&str> = list[1..].into_iter().rev().map(|&s| s).collect();
+
+        println!("{}", reversed_list.join(" "));
+
+    }
 }
